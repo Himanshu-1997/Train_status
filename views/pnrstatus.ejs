@@ -1,7 +1,22 @@
+<html>
+<head>
 <h1>Welcome to Indian Railway!!</h1>
 <h2>Pnr Status</h2>
+</head>
+<body>
 <form method="post" action="/info/pnrstatus">
 	<label>Pnr Number</label>
-	<input name="Pnr_number"/>
+	<input name="pnr_number"/>
 	<input type="submit" value="Enter"/>
 </form>
+<% if(station && station1 && doj && pass && tname) { %>
+	<h1>From station Name:- <%= station %></h1>
+	<h1>To station Name:- <%= station1 %></h1>
+	<h1>Date of Journey:- <%= doj %></h1>
+	<h1>Total Passengers:- <%= pass %></h1>
+	<h1>Train Name:- <%= tname %></h1>
+	<%}%>
+<button onclick="window.location.href='/'">Home</button>
+<button onclick="window.location.href='/info/pnrstatus'">Reset</button>
+</body>
+</html>
