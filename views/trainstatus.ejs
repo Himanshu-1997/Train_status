@@ -1,0 +1,23 @@
+
+<html>
+<head>
+	<h1>Welcome to Indian Railway!!</h1>
+	<h2>TrainStatus</h2>
+</head>
+<body>
+	<form method="post" action="/info/trainstatus">
+		<label>Train Number</label>
+		<input name="trainnumber" type="text"/>
+		<input type="submit" value="Enter"/>
+	</form>
+	<% if(trainname) { %>
+	<h1>Train Name:- <%= trainname %></h1>
+	<%}%>
+	<br>
+	<% if(trainschedule) { %>
+	<h1>Days:-</h1>
+	<h2><%= trainschedule %></h2>
+	<%}%>
+	
+</body>
+</html>
