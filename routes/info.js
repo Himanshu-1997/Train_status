@@ -18,17 +18,24 @@ router.get('/pnrstatus', function(req, res){
 	  tname:null
   });
 });
-router.get('/livetrainstatus', function(req, res){
-  res.render('livetrainstatus');
+router.get('/fareenquiry', function(req, res){
+  res.render('fareenquiry',{
+	  fare:null
+  });
 });
 router.get('/seatavailability', function(req, res){
-  res.render('seatavailability');
+  res.render('seatavailability',{
+	  date3:null,
+	  availability:null
+  });
 });
 router.get('/trainbetweenstation', function(req, res){
   res.render('trainbetweenstation',{
 	  trainname3:null
   });
 });
+
+//train_status
 router.post('/trainstatus', function(req,res) {
 	const trainnumber = req.body.trainnumber;
 	var trainname1;
@@ -115,4 +122,81 @@ router.post('/trainbetweenstation', function(req,res) {
 		}
 	});
 });
+
+//seat_availability
+router.post('/seatavailability', function(req,res) {
+	const trainnumber = req.body.trainnumber;
+	const src = req.body.src;
+	const dest = req.body.dest;
+	const date2 = req.body.date;
+	const class1 = req.body.class1;
+	const quota = req.body.quota;
+	var trainname1,date;
+	var date3=[],status=[];
+	function convertDate(dateString){
+		var p = dateString.split(/\D/g)
+		return [p[2],p[1],p[0] ].join("-")
+	}
+	date = convertDate(date2.toString());
+	const url = "https://api.railwayapi.com/v2/check-seat/train/"+trainnumber+"/source/"+src+"/dest/"+dest+"/date/"+date+"/pref/"+class1+ "/quota/"+quota+"/apikey/7l2xrdda2i"
+	request(url, function (error, response, data) {
+		console.log('error:', error);
+		data = JSON.parse(data);
+		//trainname1 = data.availability;
+		//console.log(data);
+		for(var i=0;i<data.availability.length;i++){
+			date3[i] = data.availability[i].date;
+			status[i] = data.availability[i].status;
+		}
+		if(error){
+			throw error;
+		}
+		else{
+			res.render('seatavailability',{
+				date3:date3,
+				status:status
+			});
+		}
+	});
+});
+
+//Fare_Enquiry
+
+router.post('/fareenquiry', function(req,res) {
+	const trainnumber = req.body.trainnumber;
+	const src = req.body.src;
+	const dest = req.body.dest;
+	const date2 = req.body.date;
+	const class1 = req.body.class1;
+	const quota = req.body.quota;
+	const age = req.body.age;
+	var trainname1,date,fare;
+	var date3=[],status=[];
+	function convertDate(dateString){
+		var p = dateString.split(/\D/g)
+		return [p[2],p[1],p[0] ].join("-")
+	}
+	date = convertDate(date2.toString());
+	const url = "https://api.railwayapi.com/v2/fare/train/"+trainnumber+"/source/"+src+"/dest/"+dest+"/age/"+age+"/pref/"+class1+"/quota/"+quota+"/date/"+date+"/apikey/7l2xrdda2i"
+	request(url, function (error, response, data) {
+		console.log('error:', error);
+		data = JSON.parse(data);
+		//trainname1 = data.availability;
+		fare = data.fare;
+		//console.log(data);
+		/*for(var i=0;i<data.availability.length;i++){
+			date3[i] = data.availability[i].date;
+			status[i] = data.availability[i].status;
+		}*/
+		if(error){
+			throw error;
+		}
+		else{
+			res.render('fareenquiry',{
+				fare:fare
+			});
+		}
+	});
+});
+
 module.exports = router;

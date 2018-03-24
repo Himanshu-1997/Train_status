@@ -5,7 +5,7 @@
 </head>
 <body>
 <h1>Welcome to Indian Railway!!</h1>
-<form method="post" action="/info/seatavailability">
+<form method="post" action="/info/fareenquiry">
 	<label>Enter Train Number</label>
 	<input name="trainnumber" type="text"/>
 	<br>
@@ -20,6 +20,10 @@
 	<br>
 	<label>Enter Destination Station</label>
 	<input name="dest" type="text"/>
+	<br>
+	<br>
+	<label>Enter Age</label>
+	<input name="age" type="text"/>
 	<br>
 	<br>
 	<label>Enter Class</label>
@@ -39,15 +43,11 @@
 	<br>
 	<input type="submit" value="GO"/>
 </form>
-<% if(date3 && status) { %>
-	<h1> Availability Status:- </h1>
-	<% for(var i=0;i<date3.length;i++) {%>
-		<h1><%= date3[i] %></h1>
-		<h1><%= status[i] %></h1>
-		<%}%>
-	<%}%>
 <br>
+<% if(fare) { %>
+	<h1>Total Fare:- <%= fare %></h1>
+	<%}%>
 <button onclick="window.location.href='/'">Home</button>
-<button onclick="window.location.href='/info/seatavailability'">Reset</button>
+<button onclick="window.location.href='/info/fareenquiry'">Reset</button>
 </body>
 </html>
