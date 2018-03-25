@@ -9,6 +9,9 @@ router.get('/trainstatus', function(req, res){
 	  trainschedule:null
   });
 });
+router.get('/index', function(req, res){
+  res.render('index');
+});
 router.get('/pnrstatus', function(req, res){
   res.render('pnrstatus',{
 	  station:null,
