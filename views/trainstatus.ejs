@@ -1,15 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
 
-<html>
 <head>
-	<h1>Welcome to Indian Railway!!</h1>
-	<h2>TrainStatus</h2>
+	<!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css">
+    <!-- <link rel="stylesheet" href="css/bootstrap-social.css"> -->
+	<link rel="stylesheet" href="/css/style.css">
+	<!-- endbuild -->
+    <title>Indian Railway</title>
 </head>
 <body>
+	<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="info/index"><img src="../img/raillogo.png" height="35" width="41"></a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li ><a href="/info/index">Home</a></li>
+      <li><a href="/info/pnrstatus">Pnr Status</a></li>
+      <li class="active"><a href="/info/trainstatus">Train Status</a></li>
+      <li><a href="/info/fareenquiry">Fare enquiry</a></li>
+      <li><a href="/info/seatavailability">Seat Availability</a></li>
+      <li><a href="/info/trainbetweenstation">Train between Stations</a></li>
+    </ul>
+	<ul class="nav navbar-nav navbar-right">
+      <li><a href="/user/logout"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+<div class="col-sm-6 col-offset-2">
+				<div class="card" style="padding:15px">
+					<h3 class="card-header bg-primary text-white" style="text-align:center">Train Status</h3>
+					<div class="card-block container">
 	<form method="post" action="/info/trainstatus">
+		<div class="form-group row">
+		<div class="col-md-2">
 		<label>Train Number</label>
-		<input name="trainnumber" type="text"/>
-		<input type="submit" value="Enter"/>
+		</div>
+		<div class="col-md-10">
+		<input placeholder="Enter Train Number"name="trainnumber" type="text"/>
+		</div>
+		</div>
+		<input class= "btn btn-primary"type="submit" value="Enter"/>
 	</form>
+	</div>
+	</div>
+	</div>
 	<% if(trainname) { %>
 	<h1>Train Name:- <%= trainname %></h1>
 	<%}%>
@@ -18,7 +59,10 @@
 	<h1>Days:-</h1>
 	<h2><%= trainschedule %></h2>
 	<%}%>
-<button onclick="window.location.href='/'">Home</button>
-<button onclick="window.location.href='/info/trainstatus'">Reset</button>
+</div>
+<script src="/bower_components/jquery/dist/jquery.js"></script>
+    <!-- <script src="node_modules/tether/dist/js/tether.min.js"></script> -->
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="/js/main.js"></script>
 </body>
 </html>

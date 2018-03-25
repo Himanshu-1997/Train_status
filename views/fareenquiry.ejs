@@ -1,53 +1,115 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-<title> Train Between station</title>
+	<!-- Required meta tags always come first -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css">
+    <!-- <link rel="stylesheet" href="css/bootstrap-social.css"> -->
+	<link rel="stylesheet" href="/css/style.css">
+	<!-- endbuild -->
+    <title>Indian Railway</title>
 </head>
 <body>
-<h1>Welcome to Indian Railway!!</h1>
+	<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/info/index"><img src="../img/raillogo.png" height="35" width="41"></a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/info/index">Home</a></li>
+      <li><a href="/info/pnrstatus">Pnr Status</a></li>
+      <li><a href="/info/trainstatus">Train Status</a></li>
+      <li class="active"><a href="/info/fareenquiry">Fare enquiry</a></li>
+      <li><a href="/info/seatavailability">Seat Availability</a></li>
+      <li><a href="/info/trainbetweenstation">Train between Stations</a></li>
+    </ul>
+	<ul class="nav navbar-nav navbar-right">
+      <li><a href="/user/logout"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+<div class="col-sm-6 col-offset-2">
+				<div class="card" style="padding:15px">
+					<h3 class="card-header bg-primary text-white" style="text-align:center">Fare Enquiry</h3>
+					<div class="card-block container">
 <form method="post" action="/info/fareenquiry">
+	<div class="form-group row">
+	<div class="col-md-2">
 	<label>Enter Train Number</label>
-	<input name="trainnumber" type="text"/>
-	<br>
-	<br>
+	</div>
+	<div class="col-md-10">
+	<input placeholder="Enter Train Number" name="trainnumber" type="text"/>
+	</div>
+	</div>
+	<div class="form-group row">
+	<div class="col-md-2">
 	<label>Enter Journey Date</label>
-	<input name="date" type="date"/>
-	<br>
-	<br>
+	</div>
+	<div class="col-md-10">
+	<input placeholder="Enter Journey Date"name="date" type="date"/>
+	</div>
+	</div>
+	<div class="form-group row">
+	<div class="col-md-2">
 	<label>Enter Source Station</label>
-	<input name="src" type="text"/>
-	<br>
-	<br>
+	</div>
+	<div class="col-md-10">
+	<input placeholder="Source Staion Code" name="src" type="text"/>
+	</div>
+	</div>
+	<div class="form-group row">
+	<div class="col-md-2">
 	<label>Enter Destination Station</label>
-	<input name="dest" type="text"/>
-	<br>
-	<br>
+	</div>
+	<div class="col-md-10">
+	<input placeholder="Destination Station Code"name="dest" type="text"/>
+	</div>
+	</div>
+	<div class="form-group row">
+	<div class="col-md-2">
 	<label>Enter Age</label>
-	<input name="age" type="text"/>
-	<br>
-	<br>
+	</div>
+	<div class="col-md-10">
+	<input placeholder="Age"name="age" type="text"/>
+	</div>
+	</div>
+	<div class="form-group row">
+	<div class="col-md-2">
 	<label>Enter Class</label>
 	<select name="class1">
     <option value="SL">SLEEPER CLASS</option>
     <option value="2A">SECOND AC</option>
     <option value="3A">THIRD AC</option>
   </select>
-	<br>
-	<br>
+  </div>
+	</div>
+	<div class="form-group row">
+	<div class="col-md-2">
 	<label>Enter Quota</label>
 	<select name="quota">
     <option value="GN">GENERAL QUOTA</option>
     <option value="CK">TATKAL</option>
   </select>
-	<br>
-	<br>
-	<input type="submit" value="GO"/>
+  </div>
+	</div>
+	<input class="btn btn-primary" type="submit" value="Get Fare"/>
 </form>
+</div>
+</div>
+</div>
 <br>
 <% if(fare) { %>
 	<h1>Total Fare:- <%= fare %></h1>
 	<%}%>
-<button onclick="window.location.href='/'">Home</button>
-<button onclick="window.location.href='/info/fareenquiry'">Reset</button>
+</div>
+<script src="/bower_components/jquery/dist/jquery.js"></script>
+    <!-- <script src="node_modules/tether/dist/js/tether.min.js"></script> -->
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="/js/main.js"></script>
 </body>
 </html>

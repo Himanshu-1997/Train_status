@@ -29,12 +29,21 @@ router.get('/fareenquiry', function(req, res){
 router.get('/seatavailability', function(req, res){
   res.render('seatavailability',{
 	  date3:null,
-	  availability:null
+	  trainname:null,
+	  src:null,
+	  date1:null,
+	  dest:null,
+	  trainnumber:null,
+	  quota:null,
+	  status:null
   });
 });
 router.get('/trainbetweenstation', function(req, res){
   res.render('trainbetweenstation',{
-	  trainname3:null
+	  trainname3:null,
+	  trainnumbers:null,
+	  srcs:null,
+	  dests:null
   });
 });
 
@@ -102,7 +111,7 @@ router.post('/trainbetweenstation', function(req,res) {
 	const src = req.body.source;
 	const dest = req.body.dest;
 	const date = req.body.date;
-	var trainname4=[],date2;
+	var trainname4=[],date2,trainnumbers=[],srcs=[],dests=[];
 	function convertDate(dateString){
 		var p = dateString.split(/\D/g)
 		return [p[2],p[1],p[0] ].join("-")
@@ -114,13 +123,19 @@ router.post('/trainbetweenstation', function(req,res) {
 		data = JSON.parse(data);
 		for(i=0;i<data.trains.length;i++){
 			trainname4[i] = data.trains[i].name;
+			trainnumbers[i] = data.trains[i].number;
+			srcs[i] = data.trains[i].from_station.name;
+			dests[i] = data.trains[i].to_station.name;
 		}
 		if(error){
 			throw error;
 		}
 		else{
 			res.render('trainbetweenstation',{
-				trainname3:trainname4
+				trainname3:trainname4,
+				trainnumbers:trainnumbers,
+				srcs:srcs,
+				dests:dests
 			});
 		}
 	});
@@ -141,12 +156,12 @@ router.post('/seatavailability', function(req,res) {
 		return [p[2],p[1],p[0] ].join("-")
 	}
 	date = convertDate(date2.toString());
-	const url = "https://api.railwayapi.com/v2/check-seat/train/"+trainnumber+"/source/"+src+"/dest/"+dest+"/date/"+date+"/pref/"+class1+ "/quota/"+quota+"/apikey/7l2xrdda2i"
+	const url = "https://api.railwayapi.com/v2/check-seat/train/"+trainnumber+"/source/"+src+"/dest/"+dest+"/date/"+date+"/pref/"+class1+"/quota/"+quota+"/apikey/7l2xrdda2i";
 	request(url, function (error, response, data) {
 		console.log('error:', error);
 		data = JSON.parse(data);
-		//trainname1 = data.availability;
-		//console.log(data);
+		trainname1 = data.train.name;
+		console.log(data);
 		for(var i=0;i<data.availability.length;i++){
 			date3[i] = data.availability[i].date;
 			status[i] = data.availability[i].status;
@@ -155,9 +170,21 @@ router.post('/seatavailability', function(req,res) {
 			throw error;
 		}
 		else{
+			console.log(trainname1);
+			console.log(src);
+			console.log(trainnumber);
+			console.log(dest);
+			console.log(date3);
+			console.log(status);
 			res.render('seatavailability',{
 				date3:date3,
-				status:status
+				status:status,
+				trainname:trainname1,
+				src:src,
+				date1:date,
+				dest:dest,
+				trainnumber:trainnumber,
+				quota:quota
 			});
 		}
 	});

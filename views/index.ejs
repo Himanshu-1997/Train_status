@@ -1,16 +1,44 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="utf-8">
+	<!-- Required meta tags always come first -->
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.css">
+    <!-- <link rel="stylesheet" href="css/bootstrap-social.css"> -->
+	<link rel="stylesheet" href="/css/style.css">
+	<!-- endbuild -->
+    <title>Indian Railway</title>
 </head>
 <body>
-	<h1>Welcome To Indian Railway!!</h1>
-	<button onclick="window.location.href='/info/pnrstatus'">Pnr Status</button>
-	<button onclick="window.location.href='/info/trainstatus'">Train Status</button>
-	<button onclick="window.location.href='/info/fareenquiry'">Fare Enquiry</button>
-	<button onclick="window.location.href='/info/seatavailability'">Seat Availability</button>
-	<button onclick="window.location.href='/info/trainbetweenstation'">Train Between Station</button>
+	<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"><img src="../img/raillogo.png" height="35" width="41"></a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="/info/pnrstatus">Pnr Status</a></li>
+      <li><a href="/info/trainstatus">Train Status</a></li>
+      <li><a href="/info/fareenquiry">Fare enquiry</a></li>
+      <li><a href="/info/seatavailability">Seat Availability</a></li>
+      <li><a href="/info/trainbetweenstation">Train between Stations</a></li>
+    </ul>
+	<ul class="nav navbar-nav navbar-right">
+      <li><a href="/user/logout"><span class="glyphicon glyphicon-user"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+<h1 style="text-align:center">INDIAN RAILWAYS PASSENGER RESERVATION ENQUIRY</h1>
+<div class="container">
+<img class="center-block" src="../img/railroad.jpg" height="500" width="1000" >
+</div>
+	<script src="/bower_components/jquery/dist/jquery.js"></script>
+    <!-- <script src="node_modules/tether/dist/js/tether.min.js"></script> -->
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="/js/main.js"></script>
 </body>
 </html>
